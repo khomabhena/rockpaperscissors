@@ -5,12 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="index.js"></script>
+    <script src="index.js" defer></script>
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    Kholwani
-    <script>
-        game()
-    </script>
+    <div class="container">
+        <h1 class="header">Play a Game</h1>
+        <h3 class="subHeader">Rock Paper Scissors</h3>
+        <div class="scoreContainer">
+            <h3>Score Board</h3>
+            <div class="scoreWrap">
+                <div class="score">
+                    <h2 id="man">Man: </h2>
+                    <h2 id="manScore">0</h2>
+                </div>
+                <h1 class="versus">VS</h1>
+                <div class="score">
+                    <h2 id="man">Computer:</h2>
+                    <h2 id="compScore">0</h2>
+                </div>
+            </div>
+            <div class="scores">
+                <ol id="olScores">
+                </ol>
+            </div>
+        </div>
+        <div class="boxContainer">
+            <button id="rock">Rock</button>
+            <button id="paper">Paper</button>
+            <button id="scissors">Scissors</button>
+        </div>
+    </div>
 </body>
 </html>

@@ -36,14 +36,11 @@ const playRound = (playerSelection, computerSelection) => {
 const game = () => {
     var playerScore = 0
     var computerScore = 0
-    for (let i = 1; i <= 5; i++) {
-        // const player = prompt("Enter your choice. Rock Paper or Scissors")
         const player = getComputerChoice()
         const computer = getComputerChoice()
 
         const res = playRound(player, computer)
-        console.log(res)
-
+   
         if (res.includes("tie")) {
 
         }
@@ -51,17 +48,73 @@ const game = () => {
             playerScore += 1
         else
             computerScore += 1
-
-        console.log(`Current Score: Player: ${playerScore} Computer: ${computerScore}`)
-        console.log('')
-    }
-
-    console.log('******************')
-    if (playerScore > computerScore)
-        console.log(`The Player WON!! ${playerScore} > ${computerScore}`)
-    else
-        console.log(`The Computer WON!! ${computerScore} > ${playerScore}`)
 }
 
-game()
+
+
+let playerScore = 0
+let computerScore = 0
+let count = 0
+
+const playGame = (player) => {
+    const computer = getComputerChoice()
+    
+    const res = playRound(player, computer)
+    if (res.includes("tie")) {
+
+    }
+    else if (res.includes('You win'))
+        playerScore += 1
+    else
+        computerScore += 1
+    
+    count++
+
+    const manScore = document.querySelector('#manScore')
+    const compScore = document.querySelector('#compScore')
+    manScore.textContent = playerScore
+    compScore.textContent = computerScore
+
+    // Set scores list
+    setScoresList(player, computer, count)
+    
+    if (count == 6) {
+        manScore.textContent = '0'
+        compScore.textContent = '0'
+        // set scores and reset
+        playerScore = 0
+        computerScore = 0
+        count = 0
+    }
+}
+
+const setScoresList = (player, computer, count) => {
+    const ol = document.querySelector('#olScores')
+    const li = document.createElement('li')
+    
+    li.textContent = `Man played: ${player} ******* Computer played: ${computer}`
+
+    ol.appendChild(li)
+    
+    if (count === 6) {
+        const lists = ol.querySelectorAll('li')
+        lists.forEach(li => {
+            const child = ol.firstElementChild
+            ol.removeChild(child)
+        })
+    }
+}
+
+// Listen for player input
+const boxContainer = document.querySelector('.boxContainer')
+const buttons = boxContainer.querySelectorAll('button')
+
+// add listener
+buttons.forEach(button => {
+    button.addEventListener('click', e => {
+        playGame(button.id)
+    })
+})
+
+// game()
 // const input = prompt()
